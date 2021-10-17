@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     transition-duration: .5s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+button{
+    font-size: 18px;
 }
 header{
     width:100%;

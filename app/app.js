@@ -12,13 +12,13 @@ const month = document.querySelector(".month")
 const back =  document.querySelector(".back")
 const forward =  document.querySelector(".forward")
 let tasks
+const listId = new Map()
 const days = document.querySelector('.days[type="number"]')
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 let dayIcons = document.querySelectorAll(`.days[type="number"] li`)
 let input
-let id = 0
 let checked = new Map()
 let listeners = new Map()
 const listDay = new Map()
@@ -38,7 +38,6 @@ if(localStorage.getItem("Marked for") && localStorage.getItem("Marked for")!=day
 
 setCurrent()
 listDay.set(list, new Date())
-addDeleting(deletes,listForNextDay)
 toDo.addEventListener("click", () => {
     slide(toDo,caldendar,"toDo")
     const plan = document.querySelector(".calendar .list")
@@ -133,9 +132,9 @@ function addTask(list, add, confirM, pattern, checkable=true, deleting = true, n
     
     confirM.addEventListener("click", () => {
         const value = document.querySelector(".new input").value
-        list.appendChild(createTask(value, id, pattern))
+        let id = listId.get(list)
+        list.appendChild(createTask(value, ++id, pattern))
         list.removeChild(input)
-        id++
         add.removeAttribute("style")
         confirM.removeAttribute("style")
         if(checkable) {
@@ -221,7 +220,7 @@ function setMarked(pattern,list) {
     if(marked) {
         marked = marked.split(" ")
         for(let item of marked) {
-            list.appendChild(createTask(item, id, pattern, true))
+            list.appendChild(createTask(item, "", pattern, true))
         }
     }
 }
@@ -271,12 +270,15 @@ function buildList(dayIcon, hidden = false) {
     date.setDate(+dayIcon.innerHTML)
     listDay.set(list.querySelector(".tasks"), date)
     const consist = setTasks(date, list.querySelector(".tasks"),calPattern)
-    if(consist | checkTasks(list)) {
+    if((consist | checkTasks(list)) && !dayIcon.className) {
         addClass(dayIcon, "plan")
     }
     if(now(dayIcon.innerHTML, monthNames[month])){
-        console.log("today")
         setMarked(calPattern,listForNextDay)
+    }
+    const tasks = list.querySelectorAll(".task")
+    if(tasks.length>0){
+        addDeleting(list.querySelectorAll(".delete"))
     }
 }
 
@@ -284,15 +286,21 @@ function setTasks(date, list, pattern) {
     let dateString = `${date.getMonth()} ${date.getDate()}`
     let storageTasks = localStorage.getItem(dateString)
     list.innerHTML = ""
-    id = 0
+    let max = 0
+    for(let i of listId.keys()){
+        if(max < listId.get(i)) {
+            max = listId.get(i)
+        }
+    }
     if(!storageTasks) {
         return false
     }
     storageTasks = storageTasks.split(" ")
     for (storageTask of storageTasks) {
-        list.appendChild(createTask(storageTask, id, pattern))
-        id++
+        list.appendChild(createTask(storageTask, max, pattern))
+        max++
     }
+    listId.set(list,max)
     return true
 }
 
