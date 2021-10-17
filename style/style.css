@@ -1,0 +1,300 @@
+*{
+    margin: 0;
+    padding: 0;
+    transition-duration: .5s;
+}
+header{
+    width:100%;
+    position: absolute;
+}
+nav{
+    display: flex;
+}
+p{
+    display: inherit;
+}
+.nav_button{
+    display: flex;
+    width: 50%;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: 36px;
+    font-weight: bold;
+    border-bottom: 3px solid black;
+    color: black;
+    transition-duration: 1s;
+}
+.nav_button:first-child.active{
+    border-radius: 0 0 10px 0;
+    background-color: black;
+    color: white;
+    height: 70px;
+    width: 80%;
+}
+.nav_button:last-child.active{
+    border-radius: 0 0 0 10px;
+    background-color: black;
+    color: white;
+    height: 70px;
+    width: 80%;
+}
+.main_container{
+    display: flex;
+    overflow: hidden;
+    padding-top: 150px;
+    width: 100%;
+}
+.today{
+    min-width: 100%;
+    display: flex;
+    transition-duration: 1s;
+    justify-content: center;
+}
+.list{
+    overflow: hidden;
+    width: 60%;
+    box-sizing: border-box;
+    padding: 10px 0 0;
+    border: 3px solid black;
+    border-radius: 50px;
+    align-items: flex-start;
+    display: inherit;
+    flex-direction: column;
+    height: fit-content;
+}
+.title{
+    width: 100%;
+    text-align: center;
+}
+.title::after{
+    display: block;
+    content: "";
+    background-color: black;
+    height: 3px;
+    width:100%;
+    margin-top: 10px;
+}
+.tasks{
+    list-style: none;
+    width: 100%;
+}
+.tasks li{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+.new input {
+    border-radius: 50px;
+    margin: 0 0 10px 10px;
+    padding: 0 5px;
+    font-size: 18px;
+    border: 3px solid black;
+}
+.status{
+    font-family: "Font Awesome 5 Free";
+    border: 3px solid gray;
+    border-radius: 100%;
+    align-self: center;
+    min-height: 25px;
+    min-width: 25px;
+    cursor: pointer;
+    margin-right: 10px;
+    box-sizing: border-box;
+    user-select: none;
+}
+.fas.fa-times{
+    transform: rotate(45deg);
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+.delete{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+.fas.fa-times.hovered{
+    transform: rotate(0);
+    color: gray;
+}
+.list button{
+    color: black;
+    font-weight: bold;
+    background-color: grey;
+    height: 40px;
+    width: 100%;
+    margin: 0 0 -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+}
+.add:hover,  .mark:hover{
+    background-color: lightgrey;
+    transform: scale(1.1,1.1) translate(0,-10%);
+}
+.list .confirm{
+    background: black;
+    color: white;
+    display: none;
+}
+.list .mark {
+    display: none;
+}
+.confirm:hover{
+    transform: none;
+    background-color: gray;
+    color: #000;
+}
+.status:hover{
+    background-color: lightgrey;
+}
+.status.fas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: white;
+    background: black;
+}
+.text{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: normal;
+}
+.today.cal{
+    transform: translate(-100%,0);
+}
+.calendar.cal{
+    transform: translate(-100%,0);
+}
+.today.toDo{
+    transform: translate(0,0);
+}
+.calendar.toDo{
+    transform: translate(0,0);
+}
+.calendar{
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition-duration: 1s;
+    height: fit-content;
+}
+.calendar .list.hidden{
+    transform: translate(0,-50%);
+    width: 40%;
+    visibility: hidden;
+    margin: 0;
+}
+.calendar .list{
+    width: 60%;
+    margin-top: 50px;
+    transition-delay: .1s, .5s;
+    transition-property: transform, width;
+    transition-duration: .5s;
+    margin-bottom: 100px;
+}
+.cal_table{
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    border: 3px solid black;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.month{
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 2/7;
+    width: 100%;
+    word-wrap: break-word;
+}
+hr{
+    border:none;
+    background-color: black;
+    height: 3px;
+    width: 100%;
+    grid-column: 1/8;
+}
+.fas.fa-angle-left{
+    padding: 1em 0.5em .5em .5em;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.fas.fa-angle-right{
+    padding: 1em 0.5em .5em .5em;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.cal_table .fas:hover{
+    background-color: black;
+    color: white;
+}
+.days{
+    display: grid;
+    list-style: none;
+    padding: 10px;
+    grid-column: 1/8;
+    grid-template-columns: repeat(7,1fr);
+}
+.days li{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    height: 3em;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+.days li:hover{
+    background-color: black;
+    color: white;
+}
+.plan{
+    border: 5px solid gray
+}
+.now{
+    border: 5px solid black
+}
+.plan_title{
+    margin-top: 30px;
+}
+.marked .text{
+    text-decoration: line-through;
+    color: gray;
+}
+.marked .status{
+    background-color: gray;
+    cursor: not-allowed;
+}
+.marked{
+    cursor: not-allowed;
+}
+.marked .delete{
+    display: none;
+}
+.prev, .next{
+    color: gray;
+}
+.days .disable {
+    cursor: not-allowed;
+}

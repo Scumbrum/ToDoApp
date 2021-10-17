@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/da9a95ba90.js" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>ToDo</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="nav_button active">ToDo</a>
+            <a href="#" class="nav_button">Calendar</a>
+        </nav>
+    </header>
+    <main>
+        <div class="main_container">
+            <section class = "today ToDo">
+                <div class="list">
+                    <h1 class = "title">
+                        ToDo list
+                    </h1>
+                    <ul class="tasks">
+                    
+                    </ul>
+                    <button class="add">
+                        Add task
+                    </button>
+                    <button class="confirm">
+                        Confirm
+                    </button>
+                    <button class="mark">
+                        Marked selected
+                    </button>
+                </div>
+            </section>
+            <section class="calendar ToDo">
+                <div class="cal_table">
+                    <i class="fas fa-angle-left back"></i>
+                    <h1 class="month">September</h1>
+                    <i class="fas fa-angle-right forward"></i>
+                    <hr>
+                    <ul class="days" type="name">
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                        <li>Sun</li>
+                    </ul>
+                    <hr>
+                    <ul class="days" type = "number">
+                    </ul> 
+                </div>
+                <div class="list hidden">
+                    <h1 class="title">
+                        Plans for 2 September
+                    </h1>
+                    <ul class="tasks">
+                    
+                    </ul>
+                    <button class="add">
+                        Add task
+                    </button>
+                    <button class="confirm">
+                        Confirm
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="app/app.js"></script>
+</body>
+</html>
