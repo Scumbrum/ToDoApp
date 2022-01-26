@@ -302,3 +302,21 @@ hr{
 .days .disable {
     cursor: not-allowed;
 }
+
+@media (max-width:650px) {
+    .cal_table{
+        width: 95%;
+    }
+    .nav_button{
+        font-size: 8vw;
+    }
+    .list {
+        width: 95%;
+    }
+    .days li{
+        font-size: 6vw;
+    }
+    .calendar .list{
+        width: 95%;
+    }
+}
