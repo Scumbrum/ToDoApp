@@ -21,6 +21,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 const listDay = new Map()
 let day = new Date()
+let offset = 0
 
 clearYesterdayTask()
 clearTaskForPast()
@@ -56,7 +57,6 @@ mark.addEventListener("click", () => {
 
 
 buildCalendar(new Date(), days, month, monthNames, listDay)
-let offset = 0
 
 back.addEventListener("click", () => {
     const back = new Date()
@@ -285,7 +285,7 @@ function setDisableIcon(dayIcon, monthNames) {
     let targetDay = new Date(+month[1], monthIndex, +dayIcon.innerHTML)
 
     if( isPastDay(targetDay)
-        && !dayIcon.className) {
+        && (!dayIcon.className || dayIcon.className==" plan")) {
         dayIcon.className = "disable"
         return true
     } else if(dayIcon.className == "prev" | dayIcon.className == "next") {
@@ -530,7 +530,8 @@ function clearTaskForPast() {
         let key = localStorage.key(i)
         
         key = key.split(" ")
-        if(isPastDay(new Date(+key[2], +key[1], +key[0]))){
+        
+        if(isPastDay(new Date(+key[2], +key[0], +key[1]))){
             localStorage.removeItem(localStorage.key(i))
         }
     }
